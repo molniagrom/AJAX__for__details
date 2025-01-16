@@ -7,7 +7,7 @@ clickMeButton.addEventListener('click', makeRequest)
 
 function makeRequest() {
     $.ajax({
-        url: `https://picsum.photos/v2/list?page=${input.value}&limit=10`,
+        url: `https://picsum.photos/v2/list?page=${input.value}&limit=2`,
         method: 'GET',
         success: function (data) {
             data.slice(0, 1).forEach(image => {
