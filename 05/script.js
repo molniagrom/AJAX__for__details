@@ -6,10 +6,10 @@ clickMeButton.addEventListener('click', ()=> {
     promise.then(onDataReceived)
 })
 
-function onDataReceived(data) {
+function onDataReceived(array) {
     const body = document.querySelector('body');
 
-    data.slice(0, 1).forEach(image => {
+    array.slice(0, 1).forEach(image => {
         const img = document.createElement('img');
         img.src = image.download_url;
         img.alt = image.author;
