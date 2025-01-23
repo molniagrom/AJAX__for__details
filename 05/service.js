@@ -13,3 +13,11 @@ function getTasks() {
         return response.data;
     });
 }
+
+function createTask(title) {
+    const promise = axios.post(`https://jsonplaceholder.typicode.com/posts?title=${title}`);
+    return promise.then((response) => {
+        return response.data;
+    });
+}
+
