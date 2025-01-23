@@ -7,3 +7,9 @@ function getImages(pageNumber) {
    });
 }
 
+function getTasks() {
+    const promise = axios.get('https://jsonplaceholder.typicode.com/posts');
+    return promise.then((response) => {
+        return response.data;
+    });
+}

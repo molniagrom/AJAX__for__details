@@ -1,13 +1,18 @@
-
+const body = document.querySelector('body');
 const clickMeButton = document.querySelector('#click-me')
+const getTasksButton = document.querySelector('#get-tasks')
 const input = document.querySelector('#input')
-clickMeButton.addEventListener('click', ()=> {
-   const promise = getImages(input.value)
-    promise.then(onDataReceived)
+
+clickMeButton.addEventListener('click', () => {
+    const promise = getImages(input.value)
+    promise.then(onImageReceived)
+})
+getTasksButton.addEventListener('click', () => {
+    const promise = getTasks()
+    promise.then(onTaskReceived)
 })
 
-function onDataReceived(array) {
-    const body = document.querySelector('body');
+function onImageReceived(array) {
 
     array.slice(0, 1).forEach(image => {
         const img = document.createElement('img');
@@ -19,25 +24,27 @@ function onDataReceived(array) {
     });
 }
 
+function onTaskReceived(array) {
+    const tasksResult = document.querySelector('#tasks-result');
 
+    array.forEach(task => {
+        // Создаём элемент для заголовка
+        // debugger
+        const titleElement = document.createElement('h3');
+        titleElement.textContent = task.title;
 
+        // Создаём элемент для содержимого
+        const bodyElement = document.createElement('p');
+        bodyElement.textContent = task.body;
 
+        // Создаём контейнер для поста
+        const postContainer = document.createElement('div');
+        postContainer.appendChild(titleElement);
+        postContainer.appendChild(bodyElement);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        tasksResult.appendChild(postContainer);
+    })
+}
 
 // ?page=1&limit=5
 
