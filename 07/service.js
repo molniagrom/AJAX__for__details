@@ -15,7 +15,26 @@ function getTasks(limit) { // limit задаёт количество задач
 }
 
 function createTask(title) {
+
     const promise = axios.post(`https://jsonplaceholder.typicode.com/posts`, {
+        title: title,
+    });
+    return promise.then((response) => {
+        return response.data;
+    });
+}
+
+function updateTask(title) {
+    const promise = axios.put(`https://jsonplaceholder.typicode.com/posts`, {
+        title: title,
+    });
+    return promise.then((response) => {
+        return response.data;
+    });
+}
+
+function deleteTask(title) {
+    const promise = axios.delete(`https://jsonplaceholder.typicode.com/posts`, {
         title: title,
     });
     return promise.then((response) => {

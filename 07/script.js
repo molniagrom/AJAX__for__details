@@ -1,7 +1,10 @@
 const body = document.querySelector('body');
 const clickMeButton = document.querySelector('#click-me')
 const getTasksButton = document.querySelector('#get-tasks')
+const createTasksButton = document.querySelector('#create-tasks')
 const input = document.querySelector('#input')
+
+// createTask("learn HTML")
 
 clickMeButton.addEventListener('click', () => {
     const promise = getImages(input.value)
@@ -10,6 +13,11 @@ clickMeButton.addEventListener('click', () => {
 getTasksButton.addEventListener('click', () => {
     const promise = getTasks(input.value)
     promise.then(onTaskReceived)
+})
+createTasksButton.addEventListener('click', () => {
+    const promise = createTask(input.value)
+    promise.then(onTaskCreate)
+    input.value = ''
 })
 
 function onImageReceived(array) {
@@ -32,5 +40,15 @@ function onTaskReceived(tasks) {
         li.innerText = el.title;
         result.append(li)
     })
+}
+
+function onTaskCreate(tasks) {
+    const result = document.querySelector("#tasks-result")
+
+    const li = document.createElement('li');
+    li.innerText = tasks.title;
+    result.append(li)
+
+
 
 }
