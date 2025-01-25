@@ -7,8 +7,8 @@ function getImages(pageNumber) {
    });
 }
 
-function getTasks() {
-    const promise = axios.get('https://jsonplaceholder.typicode.com/posts');
+function getTasks(limit) { // limit задаёт количество задач
+    const promise = axios.get(`https://jsonplaceholder.typicode.com/posts?_limit=${limit}`);
     return promise.then((response) => {
         return response.data;
     });

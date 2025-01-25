@@ -8,13 +8,8 @@ clickMeButton.addEventListener('click', () => {
     promise.then(onImageReceived)
 })
 getTasksButton.addEventListener('click', () => {
-    const promise = getTasks()
+    const promise = getTasks(input.value)
     promise.then(onTaskReceived)
-})
-
-createTask("lern").then((data) => {
-    // debugger
-    console.log(data)
 })
 
 function onImageReceived(array) {
@@ -30,11 +25,12 @@ function onImageReceived(array) {
 }
 
 function onTaskReceived(tasks) {
-
+    const result = document.querySelector("#tasks-result")
+    result.innerHTML = ``;
     tasks.forEach(el => {
         const li = document.createElement('li');
         li.innerText = el.title;
-        document.querySelector("#tasks-result").append(li)
+        result.append(li)
     })
 
 }
