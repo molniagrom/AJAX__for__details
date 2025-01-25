@@ -2,6 +2,7 @@ const body = document.querySelector('body');
 const clickMeButton = document.querySelector('#click-me')
 const getTasksButton = document.querySelector('#get-tasks')
 const createTasksButton = document.querySelector('#create-tasks')
+const deleteTasksButton = document.querySelector('#delete-tasks')
 const input = document.querySelector('#input')
 
 // createTask("learn HTML")
@@ -19,6 +20,27 @@ createTasksButton.addEventListener('click', () => {
     promise.then(onTaskCreate)
     input.value = ''
 })
+deleteTasksButton.addEventListener('click', () => {
+    const taskId = input.value; // ID задачи берётся из input
+    if (!taskId) {
+        alert("Введите ID задачи для удаления");
+        return;
+    }
+
+    deleteTask(taskId).then(() => {
+        const result = document.querySelector("#tasks-result");
+        const taskToRemove = [...result.children].find(el => el.innerText.includes(taskId));
+
+        if (taskToRemove) {
+            taskToRemove.remove();
+        }
+
+        alert(`Задача с ID ${taskId} удалена!`);
+        input.value = '';
+    }).catch(() => {
+        alert("Не удалось удалить задачу. Проверьте ID.");
+    });
+});
 
 function onImageReceived(array) {
 
@@ -38,6 +60,7 @@ function onTaskReceived(tasks) {
     tasks.forEach(el => {
         const li = document.createElement('li');
         li.innerText = el.title;
+        li.dataset.id = el.id;
         result.append(li)
     })
 }
@@ -49,6 +72,5 @@ function onTaskCreate(tasks) {
     li.innerText = tasks.title;
     result.append(li)
 
-
-
 }
+
