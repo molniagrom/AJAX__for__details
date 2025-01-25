@@ -1,10 +1,9 @@
-
 function getImages(pageNumber) {
-   const promise = axios.get(`https://picsum.photos/v2/list?page=${pageNumber}&limit=2`);
+    const promise = axios.get(`https://picsum.photos/v2/list?page=${pageNumber}&limit=2`);
 
-   return promise.then((response) => {
-       return response.data;
-   });
+    return promise.then((response) => {
+        return response.data;
+    });
 }
 
 function getTasks(limit) { // limit задаёт количество задач
@@ -23,8 +22,8 @@ function createTask(title) {
     });
 }
 
-function updateTask(title) {
-    const promise = axios.put(`https://jsonplaceholder.typicode.com/posts`, {
+function updateTask(title, id) {
+    const promise = axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, {
         title: title,
     });
     return promise.then((response) => {
