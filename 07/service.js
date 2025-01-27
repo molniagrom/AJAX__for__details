@@ -25,6 +25,7 @@ function createTask(title) {
 function updateTask(title, id) {
     const promise = axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, {
         title: title,
+        id: id
     });
     return promise.then((response) => {
         return response.data;
